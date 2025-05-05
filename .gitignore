@@ -23,6 +23,7 @@ wheels/
 # Virtual Environment
 venv/
 ENV/
+env/
 
 # Environment variables
 .env
@@ -35,4 +36,8 @@ ENV/
 
 # OS
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+.env 
