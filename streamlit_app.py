@@ -7,12 +7,6 @@ import json
 import time
 import requests
 
-# プロキシの設定
-proxies = {
-    'http': 'http://proxy.example.com:8080',
-    'https': 'http://proxy.example.com:8080'
-}
-
 # ページ設定を最初に配置
 st.set_page_config(
     page_title="あおんぼ台本AI",
@@ -296,10 +290,7 @@ def generate_content_guidance_prompt(video_theme, thumbnail_title, seo_keywords,
 def generate_script(api_key, reference_script, video_theme, thumbnail_title, seo_keywords, character_count, knowledge):
     try:
         # APIクライアントの初期化
-        client = Anthropic(
-            api_key=api_key,
-            timeout=300.0  # タイムアウトを5分に延長
-        )
+        client = Anthropic(api_key=api_key)
         
         # 台本分析
         st.session_state.generation_status = "analyzing"
