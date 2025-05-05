@@ -123,7 +123,22 @@ st.markdown("あおんぼ脳をインストールした高品質な台本生成�
 # サイドバー
 with st.sidebar:
     st.header("API設定")
-    api_key = st.text_input("Claude API Key", type="password", help="Claude APIキーを入力してください")
+    api_key = st.text_input(
+        "Claude API Key", 
+        type="password", 
+        help="Anthropicのウェブサイトで取得したAPIキーを入力してください。APIキーの取得方法は[こちら](https://console.anthropic.com/)を参照してください。"
+    )
+    
+    if not api_key:
+        st.warning("APIキーを入力してください。APIキーはAnthropicのウェブサイトで取得できます。")
+    else:
+        try:
+            # APIキーの検証
+            client = Anthropic(api_key=api_key)
+            st.success("APIキーが有効です")
+        except Exception as e:
+            st.error(f"APIキーが無効です: {str(e)}")
+    
     st.markdown("---")
     st.markdown("© 2025 あおんぼ台本AI - あおんぼ脳をインストールしたツール")
 
@@ -290,8 +305,7 @@ def generate_content_guidance_prompt(video_theme, thumbnail_title, seo_keywords,
 def generate_script(api_key, reference_script, video_theme, thumbnail_title, seo_keywords, character_count, knowledge):
     try:
         # APIクライアントの初期化
-        os.environ["ANTHROPIC_API_KEY"] = api_key
-        client = Anthropic()
+        client = Anthropic(api_key=api_key)
         
         # 台本分析
         st.session_state.generation_status = "analyzing"
