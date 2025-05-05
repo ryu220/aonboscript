@@ -134,8 +134,7 @@ with st.sidebar:
     else:
         try:
             # APIキーの検証
-            client = Anthropic()
-            client.api_key = api_key
+            client = Anthropic(api_key=api_key)
             # シンプルなテストメッセージを送信
             response = client.messages.create(
                 model="claude-3-7-sonnet-20250219",
@@ -317,8 +316,7 @@ def generate_content_guidance_prompt(video_theme, thumbnail_title, seo_keywords,
 def generate_script(api_key, reference_script, video_theme, thumbnail_title, seo_keywords, character_count, knowledge):
     try:
         # APIクライアントの初期化
-        client = Anthropic()
-        client.api_key = api_key
+        client = Anthropic(api_key=api_key)
         
         # 台本分析
         st.session_state.generation_status = "analyzing"
