@@ -5,6 +5,13 @@ from dotenv import load_dotenv
 from anthropic import Anthropic
 import json
 import time
+import requests
+
+# プロキシの設定
+proxies = {
+    'http': 'http://proxy.example.com:8080',
+    'https': 'http://proxy.example.com:8080'
+}
 
 # ページ設定を最初に配置
 st.set_page_config(
@@ -292,7 +299,8 @@ def generate_script(api_key, reference_script, video_theme, thumbnail_title, seo
         client = Anthropic(
             api_key=api_key,
             timeout=300.0,  # タイムアウトを5分に延長
-            default_headers={"Content-Type": "application/json; charset=utf-8"}
+            default_headers={"Content-Type": "application/json; charset=utf-8"},
+            proxies=proxies  # プロキシの設定を追加
         )
         
         # 台本分析
