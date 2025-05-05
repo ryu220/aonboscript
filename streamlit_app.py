@@ -290,7 +290,8 @@ def generate_content_guidance_prompt(video_theme, thumbnail_title, seo_keywords,
 def generate_script(api_key, reference_script, video_theme, thumbnail_title, seo_keywords, character_count, knowledge):
     try:
         # APIクライアントの初期化
-        client = Anthropic(api_key=api_key)
+        os.environ["ANTHROPIC_API_KEY"] = api_key
+        client = Anthropic()
         
         # 台本分析
         st.session_state.generation_status = "analyzing"
