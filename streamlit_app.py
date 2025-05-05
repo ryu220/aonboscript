@@ -299,9 +299,14 @@ def generate_script(api_key, reference_script, video_theme, thumbnail_title, seo
         client = Anthropic(
             api_key=api_key,
             timeout=300.0,  # タイムアウトを5分に延長
-            default_headers={"Content-Type": "application/json; charset=utf-8"},
-            proxies=proxies  # プロキシの設定を追加
+            default_headers={"Content-Type": "application/json; charset=utf-8"}
         )
+        
+        # プロキシの設定（必要な場合）
+        # client._client._session.proxies = {
+        #     'http': 'http://proxy.example.com:8080',
+        #     'https': 'http://proxy.example.com:8080'
+        # }
         
         # 台本分析
         st.session_state.generation_status = "analyzing"
