@@ -134,8 +134,7 @@ with st.sidebar:
     else:
         try:
             # APIキーの検証
-            os.environ["ANTHROPIC_API_KEY"] = api_key
-            client = Anthropic()
+            client = Anthropic(api_key=api_key)
             st.success("APIキーが有効です")
         except Exception as e:
             st.error(f"APIキーが無効です: {str(e)}")
@@ -306,8 +305,7 @@ def generate_content_guidance_prompt(video_theme, thumbnail_title, seo_keywords,
 def generate_script(api_key, reference_script, video_theme, thumbnail_title, seo_keywords, character_count, knowledge):
     try:
         # APIクライアントの初期化
-        os.environ["ANTHROPIC_API_KEY"] = api_key
-        client = Anthropic()
+        client = Anthropic(api_key=api_key)
         
         # 台本分析
         st.session_state.generation_status = "analyzing"
