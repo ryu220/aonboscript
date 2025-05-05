@@ -135,9 +135,9 @@ with st.sidebar:
         try:
             # APIキーの検証
             client = Anthropic(api_key=api_key)
-            messages = client.messages.create(
+            # シンプルなテストメッセージを送信
+            response = client.messages.create(
                 model="claude-3-7-sonnet-20250219",
-                max_tokens=10,
                 messages=[{"role": "user", "content": "test"}]
             )
             st.success("APIキーが有効です")
