@@ -136,6 +136,12 @@ with st.sidebar:
             # APIキーの検証
             client = Anthropic()
             client.api_key = api_key
+            # 簡単なテストリクエストを送信
+            client.messages.create(
+                model="claude-3-sonnet-20240229",
+                max_tokens=1,
+                messages=[{"role": "user", "content": "test"}]
+            )
             st.success("APIキーが有効です")
         except Exception as e:
             st.error(f"APIキーが無効です: {str(e)}")
