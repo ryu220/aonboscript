@@ -189,10 +189,10 @@ with st.form("script_form", clear_on_submit=False):
     character_count = st.number_input(
         "出力する台本の文字数",
         min_value=300,
-        max_value=5000,
+        max_value=10000,
         value=1000,
         step=100,
-        help="300〜5000文字の間で指定してください"
+        help="300〜10000文字の間で指定してください"
     )
     
     knowledge = st.text_area(
